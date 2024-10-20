@@ -15,10 +15,10 @@ import static java.lang.constant.ConstantDescs.*;
  ***/
 public class GenerateClass
 {
-    public static void main(String[] args) throws IOException {
+    void main() throws IOException {
 
         var className = Info.CLASS_NAME.getClassName();
-        ClassFile.of().buildTo(Path.of(STR."\{className}.class"), of(className),
+        ClassFile.of().buildTo(Path.of(className + ".class"), of(className),
                 classBuilder -> classBuilder
                         .withField("myField", of("java.lang.String"), ACC_PRIVATE)
                         .withMethodBody("hello", MethodTypeDesc.of(CD_void), ACC_STATIC,
@@ -30,7 +30,7 @@ public class GenerateClass
                                         .return_())
                         .withMethodBody("main", MethodTypeDesc.of(CD_void, of("java.lang.String").arrayType()), ACC_PUBLIC | ACC_STATIC,
                                 codeBuilder -> codeBuilder
-                                                .invokeInstruction(Opcode.INVOKESTATIC, of(className), "hello", MethodTypeDesc.of(CD_void), false)
+                                                .invoke(Opcode.INVOKESTATIC, of(className), "hello", MethodTypeDesc.of(CD_void), false)
                                                 .return_()));
     }
 

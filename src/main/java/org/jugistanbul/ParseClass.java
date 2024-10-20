@@ -13,7 +13,7 @@ import java.nio.file.Files;
  ***/
 public class ParseClass {
 
-    public static void main(String[] args) {
+    void main() {
 
         var classModel = ClassFile.of().parse(getGivenClassBytes(Info.CLASS_NAME.getClassName()));
         for (var classElement : classModel) {
@@ -28,7 +28,7 @@ public class ParseClass {
 
     private static byte[] getGivenClassBytes(final String className) {
         try {
-            var path = STR."\{System.getProperty("user.dir")}/\{className}.class";
+            var path = System.getProperty("user.dir") + "/" + className + ".class";
             File file = new File(path);
             return Files.readAllBytes(file.toPath());
         } catch (IOException ioe){

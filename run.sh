@@ -1,6 +1,6 @@
 #!/bin/bash
 
-javac -d output --release 22 --enable-preview --source-path "./*/src" \
+javac -d output --release 23 --enable-preview --source-path "./*/src" \
 $(find . -name "*.java")
 
 cd output
